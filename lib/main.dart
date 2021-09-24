@@ -31,7 +31,12 @@ class _HomePageRouteState extends State<HomePageRoute> {
           children: [
             TextButton(
               onPressed: () {
-                _word = generateWordPairs().take(1).toList().first.asLowerCase;
+                _word = generateWordPairs()
+                    .take(1)
+                    .toList()
+                    .first
+                    .first
+                    .toLowerCase();
                 setState(() {});
               },
               child:
