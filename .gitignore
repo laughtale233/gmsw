@@ -54,6 +54,7 @@ analysis_benchmark.json
 .pub-cache/
 .pub/
 build/*
+build/web/.last_build_id
 !build/web/
 flutter_*.png
 linked_*.ds
