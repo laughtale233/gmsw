@@ -9,13 +9,12 @@
 .buildlog/
 .history
 .svn/
-
 # IntelliJ related
 *.iml
 *.ipr
 *.iws
 .idea/
-
+.gradle/
 # Visual Studio Code related
 .classpath
 .project
