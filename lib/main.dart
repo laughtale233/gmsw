@@ -22,28 +22,50 @@ class HomePageRoute extends StatefulWidget {
 
 class _HomePageRouteState extends State<HomePageRoute> {
   String? _word;
+  String? _wordPair;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextButton(
-              onPressed: () {
-                _word = generateWordPairs()
-                    .take(1)
-                    .toList()
-                    .first
-                    .first
-                    .toLowerCase();
-                setState(() {});
-              },
-              child:
-                  const Text('Give me a word', style: TextStyle(fontSize: 20)),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    _word = generateWordPairs()
+                        .take(1)
+                        .toList()
+                        .first
+                        .first
+                        .toLowerCase();
+                    setState(() {});
+                  },
+                  child: const Text('Give me a word',
+                      style: TextStyle(fontSize: 20)),
+                ),
+                const SizedBox(height: 30),
+                Text(_word ?? '', style: const TextStyle(fontSize: 30)),
+              ],
             ),
-            const SizedBox(height: 30),
-            Text(_word ?? '', style: const TextStyle(fontSize: 30)),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    _wordPair =
+                        generateWordPairs().take(1).toList().first.asLowerCase;
+                    setState(() {});
+                  },
+                  child: const Text('Give me a word pair',
+                      style: TextStyle(fontSize: 20)),
+                ),
+                const SizedBox(height: 30),
+                Text(_wordPair ?? '', style: const TextStyle(fontSize: 30)),
+              ],
+            ),
           ],
         ),
       ),
