@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,8 +10,7 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) =>
-      const MaterialApp(home: HomePageRoute());
+  Widget build(BuildContext context) => const MaterialApp(home: HomePageRoute());
 }
 
 class HomePageRoute extends StatefulWidget {
@@ -35,19 +35,18 @@ class _HomePageRouteState extends State<HomePageRoute> {
               children: [
                 TextButton(
                   onPressed: () {
-                    _word = generateWordPairs()
-                        .take(1)
-                        .toList()
-                        .first
-                        .first
-                        .toLowerCase();
+                    _word = generateWordPairs().take(1).toList().first.first.toLowerCase();
                     setState(() {});
                   },
-                  child: const Text('Give me a word',
-                      style: TextStyle(fontSize: 20)),
+                  child: const Text('Give me a word', style: TextStyle(fontSize: 20)),
                 ),
                 const SizedBox(height: 30),
-                Text(_word ?? '', style: const TextStyle(fontSize: 30)),
+                InkWell(
+                    onTap: () {
+                      // 点击复制文本到剪贴板
+                      Clipboard.setData(ClipboardData(text: _word!));
+                    },
+                    child: Text(_word ?? '', style: const TextStyle(fontSize: 30))),
               ],
             ),
             Column(
@@ -55,15 +54,18 @@ class _HomePageRouteState extends State<HomePageRoute> {
               children: [
                 TextButton(
                   onPressed: () {
-                    _wordPair =
-                        generateWordPairs().take(1).toList().first.asLowerCase;
+                    _wordPair = generateWordPairs().take(1).toList().first.asLowerCase;
                     setState(() {});
                   },
-                  child: const Text('Give me a word pair',
-                      style: TextStyle(fontSize: 20)),
+                  child: const Text('Give me a word pair', style: TextStyle(fontSize: 20)),
                 ),
                 const SizedBox(height: 30),
-                Text(_wordPair ?? '', style: const TextStyle(fontSize: 30)),
+                InkWell(
+                    onTap: () {
+                      // 点击复制文本到剪贴板
+                      Clipboard.setData(ClipboardData(text: _wordPair!));
+                    },
+                    child: Text(_wordPair ?? '', style: const TextStyle(fontSize: 30))),
               ],
             ),
           ],
